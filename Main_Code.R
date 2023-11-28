@@ -1,7 +1,17 @@
-library(tidyverse)
+# 1.  Loading and initializing renv ####
+
 library(renv)
 
+#renv::init()
+
 #renv::snapshot()
+
+# 2. Loading packages needed for the assignment ####
+
+library(tidyverse)
+library(GGally)
+
+# 3. Exploring Iris ####
 
 data(iris)
 
@@ -15,11 +25,9 @@ str(iris)
 
 df <- as_tibble(iris)
 
-# Loading GGally and visualizing all variables with histograms, point plots, density plots and box plots between species. 
+# Visualizing all variables with histograms, point plots, density plots and box plots between species. 
 
-library(GGally)
-
-ggpairs(df, aes(color = Species))
+GGally::ggpairs(df, aes(color = Species))
 
 # Dropping all NA and Looking at the mean for all variables for each species
 
@@ -27,6 +35,8 @@ df %>%
   group_by(Species) %>%
   drop_na() %>%
   summarize_all(mean)
+
+# 4. Visualizing Iris ####
 
 # Converting df from wide to long format with three columns, species, variable and value
 
